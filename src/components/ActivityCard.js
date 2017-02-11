@@ -20,8 +20,8 @@ class ActivityCard extends Component {
           subtitle={`from ${activity.provider}`}
           avatar={activity.actor_avator} />
         <CardText>
-        {message}
-        {media}
+          {message}
+          {media}
         </CardText>
         <CardActions className="actions">
           <FlatButton label={`Like | ${activity.activity_likes}`} />

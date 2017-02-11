@@ -24,14 +24,11 @@ class Activities extends Component {
   }
 
   render () {
-    const test = (
-      <BoundPackery ref='packery'>
-        {this.loadedActivities(this.props)}
-      </BoundPackery>
-    )
     return (
       <div className="Activities">
-        {test}
+          <BoundPackery ref='packery'>
+            {this.loadedActivities(this.props)}
+          </BoundPackery>
         <RaisedButton
           label="Primary"
           primary={true}

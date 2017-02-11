@@ -10,9 +10,15 @@ class Activities extends Component {
   componentDidMount () {
     // Super hacky packery refresh
     const packery = this.refs.packery
-    setTimeout(function () {
-      packery.performLayout()
-    }, 2000)
+    let refreshCount = 0
+    let refresher = setInterval(function () {
+      if (refreshCount < 5) {
+        packery.performLayout()
+        refreshCount++
+      } else {
+        clearInterval(refresher)
+      }
+    }, 1000)
   }
 
   loadedActivities (props) {

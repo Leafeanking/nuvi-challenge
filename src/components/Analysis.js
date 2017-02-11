@@ -1,17 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import req from 'request-promise'
 import {Card, CardText} from 'material-ui/Card'
-
-
 import SentimentLineGraph from './SentimentLineGraph'
 import SentimentPolarGraph from './SentimentPolarGraph'
 
 class Analysis extends Component {
-  constructor (props) {
-    super(props)
-    this.props.fetchActivities()
-  }
 
   gatherDataByProvider () {
     let dataByProvider = {}
@@ -69,14 +62,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchActivities: () => {
-      dispatch({
-        'type': 'FETCH_ACTIVITIES',
-        'payload': req('https://nuvi-challenge.herokuapp.com/activities')
-      })
-    }
-  }
+  return {}
 }
 
 Analysis = connect(mapStateToProps, mapDispatchToProps)(Analysis)

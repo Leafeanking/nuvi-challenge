@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
 import { AppBar, Drawer, MenuItem } from 'material-ui'
 import { Link } from 'react-router'
+import { connect } from 'react-redux'
+import req from 'request-promise'
 import './App.css'
 
 class App extends Component {
   constructor (props) {
     super(props)
     this.state = {'open': false}
+    this.props.fetchActivities()
   }
 
   handleToggle () {
@@ -16,8 +19,6 @@ class App extends Component {
   handleClose () {
     this.setState({open: false})
   }
-
-
 
   render () {
     return (
@@ -41,5 +42,22 @@ class App extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {}
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchActivities: () => {
+      dispatch({
+        'type': 'FETCH_ACTIVITIES',
+        'payload': req('https://nuvi-challenge.herokuapp.com/activities')
+      })
+    }
+  }
+}
+
+App = connect(mapStateToProps, mapDispatchToProps)(App)
 
 export default App

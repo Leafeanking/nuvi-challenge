@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import req from 'request-promise'
 import Packery from 'react-packery-component'
 import ActivityCard from './ActivityCard'
 import RaisedButton from 'material-ui/RaisedButton'
@@ -8,17 +7,12 @@ import RaisedButton from 'material-ui/RaisedButton'
 const BoundPackery = Packery(React)
 
 class Activities extends Component {
-  constructor (props) {
-    super(props)
-    this.props.fetchActivities()
-  }
-
   componentDidMount () {
     // Super hacky packery refresh
     const packery = this.refs.packery
     setTimeout(function () {
       packery.performLayout()
-    }, 1000)
+    }, 2000)
   }
 
   loadedActivities (props) {
@@ -57,12 +51,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchActivities: () => {
-      dispatch({
-        'type': 'FETCH_ACTIVITIES',
-        'payload': req('https://nuvi-challenge.herokuapp.com/activities')
-      })
-    },
     loadMoreActivities: () => {
       dispatch({'type': 'LOAD_MORE_ACTIVITIES'})
     }

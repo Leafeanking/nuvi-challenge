@@ -30,8 +30,8 @@ class App extends Component {
           docked={false}
           open={this.state.open}
           onRequestChange={(open) => this.setState({open})}>
-          <Link to="/"><MenuItem onTouchTap={this.handleClose}>Activities</MenuItem></Link>
-          <Link to="/analysis"><MenuItem onTouchTap={this.handleClose}>Analysis</MenuItem></Link>
+          <Link to="/"><MenuItem onTouchTap={this.handleClose.bind(this)}>Activities</MenuItem></Link>
+          <Link to="/analysis"><MenuItem onTouchTap={this.handleClose.bind(this)}>Analysis</MenuItem></Link>
         </Drawer>
 
         <div className="wrapper">

@@ -12,7 +12,7 @@ class ActivityCard extends Component {
     let message = <p>{activity.activity_message}</p>
 
     if (activity.activity_attachment !== undefined && activity.activity_attachment !== null) {
-      media = <img src={activity.activity_attachment} className="responsive-img" />
+      media = <img src={activity.activity_attachment} alt="Place Holder" className="responsive-img" />
       message = null
     }
 

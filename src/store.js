@@ -5,7 +5,7 @@ import promiseMiddleware from 'redux-promise-middleware'
 const initialState = {
   'activities': [],
   'fetchingActivities': false,
-  'activityOffset': 0,
+  'activityOffset': 20,
   'error': null
 }
 
@@ -21,6 +21,10 @@ const reducer = (state = initialState, action) => {
     }
     case 'FETCH_ACTIVITIES_REJECTED': {
       state = {...state, 'error': action.payload, 'fetchingActivities': false}
+      break
+    }
+    case 'LOAD_MORE_ACTIVITIES': {
+      state = {...state, 'activityOffset': state.activityOffset + 20}
       break
     }
     default: {}

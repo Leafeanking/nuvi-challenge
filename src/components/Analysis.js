@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import req from 'request-promise'
-import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card'
+import {Card, CardText} from 'material-ui/Card'
 
 
 import SentimentLineGraph from './SentimentLineGraph'

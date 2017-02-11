@@ -3,12 +3,9 @@ import { connect } from 'react-redux'
 import req from 'request-promise'
 import Packery from 'react-packery-component'
 import ActivityCard from './ActivityCard'
+import RaisedButton from 'material-ui/RaisedButton'
 
 const BoundPackery = Packery(React)
-
-const packeryOptions = {
-  transitionDuration: 0
-}
 
 class Activities extends Component {
   constructor (props) {
@@ -16,24 +13,36 @@ class Activities extends Component {
     this.props.fetchActivities()
   }
 
+  componentDidMount () {
+    // Super hacky packery refresh
+    const packery = this.refs.packery
+    setTimeout(function () {
+      packery.performLayout()
+    }, 1000)
+  }
+
   loadedActivities (props) {
-    return props.activities.slice(0, 20).map((activity, index) => {
+    return props.activities.slice(0, props.activityOffset).map((activity, index) => {
       return (
-        <ActivityCard key={index} activity={activity} />
+        <ActivityCard ref={index} key={index} activity={activity} />
       )
     })
   }
 
   render () {
+    const test = (
+      <BoundPackery ref='packery'>
+        {this.loadedActivities(this.props)}
+      </BoundPackery>
+    )
     return (
       <div className="Activities">
-        <BoundPackery
-          className={'packery'}
-          elementType={'div'}
-          options={packeryOptions}
-          disableImagesLoaded={false} >
-          {this.loadedActivities(this.props)}
-        </BoundPackery>
+        {test}
+        <RaisedButton
+          label="Primary"
+          primary={true}
+          style={{'float': 'right'}}
+          onClick={this.props.loadMoreActivities} />
       </div>
     )
   }
@@ -41,7 +50,8 @@ class Activities extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    'activities': state.activities
+    'activities': state.activities,
+    'activityOffset': state.activityOffset
   }
 }
 
@@ -52,6 +62,9 @@ const mapDispatchToProps = (dispatch) => {
         'type': 'FETCH_ACTIVITIES',
         'payload': req('https://nuvi-challenge.herokuapp.com/activities')
       })
+    },
+    loadMoreActivities: () => {
+      dispatch({'type': 'LOAD_MORE_ACTIVITIES'})
     }
   }
 }

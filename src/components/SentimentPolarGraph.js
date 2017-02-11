@@ -25,7 +25,6 @@ class SentimentPolarGraph extends Component {
     for (const key in providerActivites) {
       totalSentiment += providerActivites[key].sentiments.reduce((a, b) => { return a + b })
     }
-    console.log('totalSentiment', totalSentiment)
     return totalSentiment
   }
 

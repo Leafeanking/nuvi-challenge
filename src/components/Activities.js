@@ -22,6 +22,7 @@ class Activities extends Component {
   }
 
   loadedActivities (props) {
+    // Load 20 activities in DOM at a time.
     return props.activities.slice(0, props.activityOffset).map((activity, index) => {
       return (
         <ActivityCard ref={index} key={index} activity={activity} />

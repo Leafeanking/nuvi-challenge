@@ -27,12 +27,3 @@ ReactDOM.render((
       </MuiThemeProvider>
     </Provider>
 ), document.getElementById('root'))
-
-// ReactDOM.render(
-//   <Provider store={store}>
-//     <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
-//       <App />
-//     </MuiThemeProvider>
-//   </Provider>,
-//   document.getElementById('root')
-// )

@@ -1,5 +1,7 @@
 import * as http from 'http'
 
+// Uses Nodejs's http module to fetch data from nuvi challenge endpoint
+// Returns a promise so that it can be used with the redux-promise-middleware
 export default function () {
   return new Promise((resolve, reject) => {
     http.get({
@@ -7,11 +9,12 @@ export default function () {
       port: 80,
       path: '/activities'
     }, (res) => {
+      let rawData = ''
+
       if (res.statusCode !== 200) {
         reject(res.statusCode)
       } else {
         res.setEncoding('utf8')
-        let rawData = ''
 
         res.on('data', (chunk) => rawData += chunk)
 

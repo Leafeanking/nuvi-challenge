@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { AppBar, Drawer, MenuItem } from 'material-ui'
 import { Link } from 'react-router'
 import { connect } from 'react-redux'
-import req from 'request-promise'
+import requestJSON from './request-json'
 import './App.css'
 
 class App extends Component {
@@ -52,7 +52,7 @@ const mapDispatchToProps = (dispatch) => {
     fetchActivities: () => {
       dispatch({
         'type': 'FETCH_ACTIVITIES',
-        'payload': req('https://nuvi-challenge.herokuapp.com/activities')
+        'payload': requestJSON()
       })
     }
   }

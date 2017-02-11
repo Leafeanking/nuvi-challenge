@@ -16,7 +16,7 @@ const reducer = (state = initialState, action) => {
       break
     }
     case 'FETCH_ACTIVITIES_FULFILLED': {
-      state = {...state, activities: JSON.parse(action.payload), 'fetchingActivities': false}
+      state = {...state, activities: action.payload, 'fetchingActivities': false}
       break
     }
     case 'FETCH_ACTIVITIES_REJECTED': {

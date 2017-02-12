@@ -37,7 +37,7 @@ class Activities extends Component {
             {this.loadedActivities(this.props)}
           </BoundPackery>
         <RaisedButton
-          label="Primary"
+          label="Load More"
           primary={true}
           style={{'float': 'right'}}
           onClick={this.props.loadMoreActivities} />
